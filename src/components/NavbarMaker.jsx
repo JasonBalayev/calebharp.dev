@@ -34,8 +34,8 @@ const Navbar = () => {
 
   const pages = [
     ["/", "Home"],
-    ["/projects", "Projects"],
     ["/experiences", "Experiences"],
+    ["/projects", "Projects"],
     ["/about", "About"],
     ["/contact", "Contact"],
   ];

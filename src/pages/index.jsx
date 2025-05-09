@@ -1,13 +1,12 @@
 import * as React from "react";
 import Layout from "../components/Layout";
 import { Button } from "@nextui-org/button";
-import TypewriterText from "../components/TypewriterText";
+import FlyInText from "../components/TypewriterText";
 import { Link } from "gatsby";
 import { motion } from "framer-motion";
 import profileImage from "../images/professional/calebProfile.jpeg";
 import { FaArrowDown, FaGithub, FaLinkedin, FaCode, FaLaptopCode, FaServer, FaTerminal } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import AnimatedStars from "../components/AnimatedStars";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -59,9 +58,9 @@ const IndexPage = () => {
             </motion.div>
 
             <div className="relative w-full text-center">
-              <h1 className="relative text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-spaceGrotesk tracking-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-600 [text-shadow:_0_0_30px_rgb(59_130_246_/_0.3)] animate-pulse">
-                  <TypewriterText text="Caleb Bennett-Harper" delay={0} speed={100} />
+              <h1 className="relative text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-600 [text-shadow:_0_0_30px_rgb(59_130_246_/_0.3)] animate-pulse font-serif italic">
+                  <FlyInText text="Caleb Bennett-Harper" delay={0} speed={50} />
                 </span>
               </h1>
             </div>
@@ -71,139 +70,174 @@ const IndexPage = () => {
                 animate={{ opacity: [0, 1] }}
                 transition={{ duration: 0.5, delay: 1.5 }}
               >
-                <FaTerminal className="text-blue-400" />
               </motion.div>
-              <TypewriterText
-                text="Computer Science + Economics @ Northeastern University '27"
-                delay={1500}
-                speed={50}
-              />
             </h2>
 
             <motion.div 
               className="text-base sm:text-lg md:text-xl mt-6 text-center text-gray-300 max-w-2xl relative"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 4 }}
+              transition={{ duration: 0.6, delay: 2 }}
             >
-              <TypewriterText
-                text="Incoming SWE Intern @ Sixth Street | Building innovative solutions."
-                delay={4000}
-                speed={30}
+              <FlyInText
+                text="Incoming SWE Intern @ Sixth Street."
+                delay={1500}
+                speed={40}
               />
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mt-12 w-full max-w-5xl">
-              <FeatureBox
-                icon={<FaCode />}
-                title="Software Development & Quality Assurance"
-                description="Building robust applications with quality standards."
-                color="blue"
-              />
-              <FeatureBox
-                icon={<FaLaptopCode />}
-                title="Full Stack"
-                description="End-to-end solutions with modern web technologies."
-                color="blue"
-              />
-              <FeatureBox
-                icon={<FaServer />}
-                title="System Design"
-                description="Creating scalable architectures optimizing performance."
-                color="blue"
-              />            
-            </div>
-
-            <div className="flex space-x-6 mt-8">
+            <motion.div 
+              className="mt-12 w-full max-w-5xl bg-gradient-to-r from-blue-900/30 to-indigo-900/30 p-6 rounded-xl border border-blue-500/20"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 5 }}
+            >
+              <h3 className="text-2xl md:text-3xl font-bold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
+                Who Am I?
+              </h3>
+              
+              <div className="flex flex-col md:flex-row gap-8 items-center">
+                <motion.div 
+                  className="flex-1 space-y-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 5.3 }}
+                >
+                  <p className="text-gray-300">
+                    I'm passionate about creating technology that solves real-world problems. My journey in software development 
+                    has taken me from building simple applications to designing complex systems.
+                  </p>
+                  <p className="text-gray-300">
+                    With experience in both frontend and backend technologies, I enjoy the challenge of 
+                    creating seamless, efficient, and intuitive digital experiences.
+                  </p>
+                </motion.div>
+                
+                <motion.div 
+                  className="flex-1 bg-black/40 p-5 rounded-lg border border-blue-500/30"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <h4 className="text-xl font-semibold text-blue-400 mb-3">Core Skills</h4>
+                  <ul className="space-y-2">
+                    {["Full-Stack Development", "System Architecture", "Problem Solving", "Data Analysis", "UI/UX Design"].map((skill, index) => (
+                      <motion.li 
+                        key={skill}
+                        className="flex items-center gap-2 text-gray-300"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 5.5 + (index * 0.1) }}
+                      >
+                        <span className="text-blue-500">→</span> {skill}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
+              </div>
+              
+              <motion.div 
+                className="mt-10 pt-6 border-t border-blue-500/20"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 6 }}
+              >
+                <h4 className="text-center text-gray-400 mb-5 font-light">Explore My Work</h4>
+                <div className="flex flex-wrap justify-center gap-5">
+                  <Link to="/projects">
+                    <motion.div
+                      className="group relative overflow-hidden bg-gradient-to-br from-blue-600/20 to-indigo-600/20 rounded-lg px-6 py-3 shadow-lg"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                      <div className="relative flex items-center gap-3">
+                        <span className="text-xl text-blue-400">💻</span>
+                        <span className="text-white font-medium">Projects</span>
+                      </div>
+                    </motion.div>
+                  </Link>
+                  
+                  <Link to="/experiences">
+                    <motion.div
+                      className="group relative overflow-hidden bg-gradient-to-br from-blue-600/20 to-indigo-600/20 rounded-lg px-6 py-3 shadow-lg"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                      <div className="relative flex items-center gap-3">
+                        <span className="text-xl text-blue-400">🚀</span>
+                        <span className="text-white font-medium">Experiences</span>
+                      </div>
+                    </motion.div>
+                  </Link>
+                  
+                  <Link to="/about">
+                    <motion.div
+                      className="group relative overflow-hidden bg-gradient-to-br from-blue-600/20 to-indigo-600/20 rounded-lg px-6 py-3 shadow-lg"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                      <div className="relative flex items-center gap-3">
+                        <span className="text-xl text-blue-400">👤</span>
+                        <span className="text-white font-medium">About Me</span>
+                      </div>
+                    </motion.div>
+                  </Link>
+                </div>
+              </motion.div>
+            </motion.div>
+            
+            <motion.div 
+              className="mt-12 flex justify-center gap-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 6.5 }}
+            >
               <a
                 href="https://github.com/CalebBennett"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:text-white transition-colors duration-300"
+                className="group"
               >
-                <FaGithub className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
+                <motion.div
+                  className="bg-black/30 p-3 rounded-full border border-blue-500/30 hover:border-blue-500 transition-all duration-300"
+                  whileHover={{ y: -3 }}
+                >
+                  <FaGithub className="w-6 h-6 text-gray-400 group-hover:text-blue-400 transition-colors duration-300" />
+                </motion.div>
               </a>
               <a
                 href="https://linkedin.com/in/CalebBennettHarper"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:text-white transition-colors duration-300"
+                className="group"
               >
-                <FaLinkedin className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
+                <motion.div
+                  className="bg-black/30 p-3 rounded-full border border-blue-500/30 hover:border-blue-500 transition-all duration-300"
+                  whileHover={{ y: -3 }}
+                >
+                  <FaLinkedin className="w-6 h-6 text-gray-400 group-hover:text-blue-400 transition-colors duration-300" />
+                </motion.div>
               </a>
               <a
                 href="https://x.com/Caleb_BH"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:text-white transition-colors duration-300"
+                className="group"
               >
-                <FaXTwitter className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
+                <motion.div
+                  className="bg-black/30 p-3 rounded-full border border-blue-500/30 hover:border-blue-500 transition-all duration-300"
+                  whileHover={{ y: -3 }}
+                >
+                  <FaXTwitter className="w-6 h-6 text-gray-400 group-hover:text-blue-400 transition-colors duration-300" />
+                </motion.div>
               </a>
-            </div>
-
-            <motion.div className="mt-8 animate-bounce" variants={childVariants}>
-              <FaArrowDown className="text-blue-500 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
-            </motion.div> 
-
-            <motion.div className="mt-4 flex flex-wrap gap-4 justify-center" variants={childVariants}>
-              <Link to="/projects">
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  radius="full"
-                  className="text-white border-2 border-blue-500 hover:bg-blue-500 hover:border-blue-500 hover:text-white transition-all duration-300 text-base sm:text-lg md:text-xl px-6 py-2 sm:px-8 sm:py-3"
-                >
-                  View My Projects
-                </Button>
-              </Link>
-              <Link to="/experiences">
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  radius="full"
-                  className="text-white border-2 border-blue-500 hover:bg-blue-500 hover:border-blue-500 hover:text-white transition-all duration-300 text-base sm:text-lg md:text-xl px-6 py-2 sm:px-8 sm:py-3"
-                >
-                  My Experiences
-                </Button>
-              </Link>
-              <Link to="/about">
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  radius="full"
-                  className="text-white border-2 border-blue-500 hover:bg-blue-500 hover:border-blue-500 hover:text-white transition-all duration-300 text-base sm:text-lg md:text-xl px-6 py-2 sm:px-8 sm:py-3"
-                >
-                  About Me
-                </Button>
-              </Link>
             </motion.div>
           </motion.section>
         </motion.main>
       </div>
     </Layout>
-  );
-};
-
-const FeatureBox = ({ icon, title, description, color = "indigo" }) => {
-  const borderColor = color === "blue" ? "hover:border-blue-500" : "hover:border-indigo-500";
-  const iconColor = color === "blue" ? "text-blue-400" : "text-indigo-400";
-  
-  return (
-    <motion.div
-      className={`relative p-6 bg-black bg-opacity-40 rounded-xl border border-white border-opacity-10 ${borderColor} transition-all duration-300`}
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.2 }}
-    >
-      <div className={`${iconColor} text-2xl sm:text-3xl mb-4`}>{icon}</div>
-      <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{title}</h3>
-      <p className="text-sm sm:text-base text-gray-400">{description}</p>
-
-      {color === "blue" && (
-        <div className="absolute -bottom-1 -right-1 text-blue-500 opacity-10 text-4xl rotate-12">
-          $
-        </div>
-      )}
-    </motion.div>
   );
 };
 

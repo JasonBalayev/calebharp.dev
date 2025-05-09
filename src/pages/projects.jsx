@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import ProjectCards from "../components/ProjectCards";
 import { projects } from "../components/projects";
 import { motion } from "framer-motion";
-import TypewriterText from "../components/TypewriterText";
+import FlyInText from "../components/TypewriterText";
 
 const Projects = () => {
   return (
@@ -16,16 +16,16 @@ const Projects = () => {
           className="relative z-10 text-white text-arial"
         >
           <motion.h1 
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mt-8 mb-12"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mt-8 mb-12 tracking-tight"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-600 [text-shadow:_0_0_30px_rgb(59_130_246_/_0.3)] animate-pulse">
-              <TypewriterText 
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-600 [text-shadow:_0_0_30px_rgb(59_130_246_/_0.3)] animate-pulse font-serif italic">
+              <FlyInText 
                 text="My Projects" 
                 delay={0} 
-                speed={100}
+                speed={50}
               />
             </span>
           </motion.h1>

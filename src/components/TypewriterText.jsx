@@ -1,40 +1,65 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
-const TypewriterText = ({ text, delay = 0, speed = 50 }) => {
-  const [displayedText, setDisplayedText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [startTyping, setStartTyping] = useState(false);
-
-  useEffect(() => {
-    const startDelay = setTimeout(() => {
-      setStartTyping(true);
-    }, delay);
-
-    return () => clearTimeout(startDelay);
-  }, [delay]);
-
-  useEffect(() => {
-    if (startTyping && currentIndex < text.length) {
-      const timeout = setTimeout(() => {
-        setDisplayedText(prev => prev + text[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      }, speed);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [currentIndex, text, speed, startTyping]);
-
+const FlyInText = ({ text, delay = 0, speed = 50 }) => {
+  // Split text into individual characters for animation
+  const characters = Array.from(text);
+  
+  const container = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { 
+        staggerChildren: speed / 1000,
+        delayChildren: delay / 1000,
+      },
+    }),
+  };
+  
+  const child = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+      x: -20,
+      rotate: -10,
+      scale: 0.8,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      rotate: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 200,
+      },
+    },
+  };
+  
   return (
     <motion.span
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
+      variants={container}
+      initial="hidden"
+      animate="visible"
+      className="inline-block"
     >
-      {displayedText}
-      {currentIndex < text.length && <span className="animate-pulse">|</span>}
+      {characters.map((character, index) => (
+        <motion.span
+          key={index}
+          variants={child}
+          className="inline-block"
+          style={{ 
+            textShadow: "0 0 8px rgba(59, 130, 246, 0.5)",
+            display: character === " " ? "inline" : "inline-block"
+          }}
+        >
+          {character === " " ? "\u00A0" : character}
+        </motion.span>
+      ))}
     </motion.span>
   );
 };
 
-export default TypewriterText;
+export default FlyInText;

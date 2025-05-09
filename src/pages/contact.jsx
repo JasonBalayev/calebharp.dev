@@ -1,7 +1,7 @@
 import * as React from "react";
 import Layout from "../components/Layout";
 import { motion } from "framer-motion";
-import TypewriterText from "../components/TypewriterText";
+import FlyInText from "../components/TypewriterText";
 import { FaXTwitter } from "react-icons/fa6";
 
 const Contact = () => {
@@ -15,20 +15,15 @@ const Contact = () => {
             transition={{ duration: 1 }}
             className="text-center"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-8 font-spaceGrotesk tracking-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-600 [text-shadow:_0_0_30px_rgb(59_130_246_/_0.3)] animate-pulse">
-                <TypewriterText 
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-8 tracking-tight">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-600 [text-shadow:_0_0_30px_rgb(59_130_246_/_0.3)] animate-pulse font-serif italic">
+                <FlyInText 
                   text="Let's Connect"
                   delay={0}
-                  speed={100}
+                  speed={50}
                 />
               </span>
             </h1>
-            <p className="text-lg sm:text-xl text-gray-300 mt-4">
-              Sophomore @ Northeastern University actively seeking part-time internships in the Bay Area, California.  
-              <br />  
-              Open to opportunities for January–June or May–August of the 2025 season.
-            </p>
           </motion.div>
 
           <motion.div
@@ -40,7 +35,7 @@ const Contact = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center w-full">
               <motion.a
                 whileHover={{ scale: 1.05 }}
-                href="https://linkedin.com/in/CalebBennettHarper/"
+                href="https://www.linkedin.com/in/caleb-bennett-harper/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto"
@@ -55,7 +50,7 @@ const Contact = () => {
 
               <motion.a
                 whileHover={{ scale: 1.05 }}
-                href="https://github.com/CalebBennett"
+                href="https://github.com/CalebBennett-Harper"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto"

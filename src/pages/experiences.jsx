@@ -2,8 +2,8 @@ import * as React from "react";
 import Layout from "../components/Layout";
 import { motion } from "framer-motion";
 import { FaBriefcase, FaMapMarkerAlt, FaCalendarAlt, FaTools, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import FlyInText from "../components/TypewriterText";
 
-// Import company logos
 import sixthStreetLogo from "../images/companyLogos/6thst.png";
 import boaLogo from "../images/companyLogos/boa.jpeg";
 import googleLogo from "../images/companyLogos/google.jpeg";
@@ -15,7 +15,6 @@ import phillyLogo from "../images/companyLogos/philly.jpeg";
 const ExperienceCard = ({ company, position, type, duration, location, skills, onsite, program, additionalPositions }) => {
   const [expanded, setExpanded] = React.useState(false);
   
-  // Helper function to get the appropriate logo
   const getLogo = () => {
     switch(company) {
       case "Sixth Street":
@@ -46,7 +45,6 @@ const ExperienceCard = ({ company, position, type, duration, location, skills, o
       onClick={() => setExpanded(!expanded)}
     >
       <div className="p-6 relative">
-        {/* Futuristic accent line */}
         <div className="absolute top-0 left-0 w-1/3 h-1 bg-gradient-to-r from-blue-600 to-transparent"></div>
         
         <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
@@ -260,9 +258,9 @@ const Experiences = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-4">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600">
-                Professional Experiences
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-4 tracking-tight">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 font-serif italic">
+                <FlyInText text="Professional Experiences" delay={0} speed={50} />
               </span>
             </h1>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
