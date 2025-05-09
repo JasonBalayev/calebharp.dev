@@ -2,23 +2,30 @@ import * as React from "react";
 import { Link } from "gatsby";
 import { Squash as Hamburger } from "hamburger-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaCode } from "react-icons/fa";
+import { FaLaptopCode } from "react-icons/fa";
 import { scrollToTop } from "../utils/scrollToTop";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [activeTab, setActiveTab] = React.useState("/");
+  const [scrolled, setScrolled] = React.useState(false);
   const navRef = React.useRef(null);
 
-  // Set active tab based on current path
   React.useEffect(() => {
     if (typeof window !== "undefined") {
-      const path = window.location.pathname;
-      setActiveTab(path);
+      const handleScroll = () => {
+        const isScrolled = window.scrollY > 10;
+        if (isScrolled !== scrolled) {
+          setScrolled(isScrolled);
+        }
+      };
+      
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
     }
-  }, []);
+  }, [scrolled]);
 
-  // Close menu when clicking outside
   React.useEffect(() => {
     const handleClickOutside = (event) => {
       if (isMenuOpen && navRef.current && !navRef.current.contains(event.target)) {
@@ -48,7 +55,11 @@ const Navbar = () => {
   return (
     <motion.nav 
       ref={navRef} 
-      className="sticky top-0 z-50 backdrop-blur-md border-b border-blue-500/10 bg-[#050a14]/80"
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled 
+          ? "bg-black/90 backdrop-blur-md shadow-lg shadow-blue-900/10" 
+          : "bg-transparent"
+      }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -56,94 +67,22 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="relative">
-                <motion.div
-                  className="absolute inset-0 rounded-md bg-blue-500 blur-md opacity-70"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                  }}
-                />
-                <motion.div
-                  className="relative bg-gradient-to-r from-blue-600 to-indigo-600 p-2 rounded-md"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <FaCode className="text-white text-xl" />
-                </motion.div>
-              </div>
-              <div className="font-spaceGrotesk font-bold text-xl tracking-wider">
-                <span className="text-white">CALEB</span>
-                <span className="text-blue-500">BENNETT</span>
-              </div>
+            <Link to="/" className="flex items-center" onClick={handleNavigation}>
+              <motion.div 
+                className="flex items-center gap-2"
+                whileHover={{ scale: 1.03 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center">
+                  <FaLaptopCode className="text-white text-lg" />
+                </div>
+                <span className="text-xl text-white">calebharp.dev</span>
+              </motion.div>
             </Link>
           </div>
           
-          {/* Desktop menu */}
-          <div className="hidden sm:flex sm:items-center sm:space-x-4">
-            {pages.map((page) => (
-              <Link
-                key={page[0]}
-                to={page[0]}
-                className="relative group"
-                onClick={handleNavigation}
-              >
-                <div className={`px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
-                  activeTab === page[0] 
-                    ? "text-white bg-blue-500/10" 
-                    : "text-gray-300 hover:text-white hover:bg-blue-500/5"
-                }`}>
-                  {page[1]}
-                </div>
-                {activeTab === page[0] && (
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500"
-                    layoutId="navbar-underline"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                )}
-                <motion.div
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 scale-x-0 origin-left"
-                  initial={false}
-                  whileHover={{ scaleX: activeTab === page[0] ? 0 : 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </Link>
-            ))}
-          </div>
-          
-          {/* Mobile menu button */}
-          <div className="sm:hidden flex items-center">
-            <div className="relative">
-              <Hamburger 
-                toggled={isMenuOpen} 
-                toggle={setIsMenuOpen} 
-                size={20}
-                color="#3b82f6"
-                rounded
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="sm:hidden bg-[#050a14]/95 backdrop-blur-md border-b border-blue-500/10"
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1">
+          <div className="hidden sm:flex sm:items-center">
+            <div className="flex space-x-1 bg-black/40 rounded-full px-1 py-1 backdrop-blur-sm">
               {pages.map((page) => (
                 <Link
                   key={page[0]}
@@ -151,11 +90,49 @@ const Navbar = () => {
                   onClick={handleNavigation}
                 >
                   <motion.div
-                    className={`block px-3 py-2 rounded-md text-base font-medium ${
-                      activeTab === page[0]
-                        ? "text-white bg-blue-500/20"
-                        : "text-gray-300 hover:text-white hover:bg-blue-500/10"
-                    }`}
+                    className="px-4 py-2 text-sm rounded-full transition-colors duration-200 text-gray-300 hover:text-white hover:bg-white/5"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  >
+                    {page[1]}
+                  </motion.div>
+                </Link>
+              ))}
+            </div>
+          </div>
+          
+          <div className="sm:hidden flex items-center">
+            <div className="relative">
+              <Hamburger 
+                toggled={isMenuOpen} 
+                toggle={setIsMenuOpen} 
+                size={20}
+                color={scrolled ? "#ffffff" : "#ffffff"}
+                rounded
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="sm:hidden bg-black/95 backdrop-blur-md"
+          >
+            <div className="px-4 pt-2 pb-4 space-y-1 border-t border-gray-800">
+              {pages.map((page) => (
+                <Link
+                  key={page[0]}
+                  to={page[0]}
+                  onClick={handleNavigation}
+                >
+                  <motion.div
+                    className="block px-4 py-3 rounded-lg text-base text-gray-300 hover:text-white hover:bg-white/5"
                     whileHover={{ x: 5 }}
                     transition={{ duration: 0.2 }}
                   >

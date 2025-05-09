@@ -263,9 +263,6 @@ const Experiences = () => {
                 <FlyInText text="Professional Experiences" delay={0} speed={50} />
               </span>
             </h1>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              A timeline of my professional journey and the skills I've developed along the way.
-            </p>
           </motion.div>
 
           <div className="w-full max-w-5xl">
