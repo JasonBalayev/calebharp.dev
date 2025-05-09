@@ -1,0 +1,41 @@
+{
+  "name": "my-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "my-portfolio",
+  "author": "Jason Balayev",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@nextui-org/button": "^2.0.26",
+    "@nextui-org/navbar": "^2.0.27",
+    "@nextui-org/react": "^2.2.9",
+    "@nextui-org/system": "^2.0.15",
+    "@nextui-org/theme": "^2.1.17",
+    "@react-three/drei": "^9.117.0",
+    "@react-three/fiber": "^8.17.10",
+    "autoprefixer": "^10.4.16",
+    "better-react-mathjax": "^2.0.3",
+    "framer-motion": "^10.18.0",
+    "gatsby": "^5.12.12",
+    "gatsby-plugin-postcss": "^6.13.0",
+    "gatsby-source-filesystem": "^5.13.0",
+    "hamburger-react": "^2.5.0",
+    "postcss": "^8.4.32",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^5.3.0",
+    "react-tsparticles": "^2.12.2",
+    "tailwindcss": "^3.3.7",
+    "three": "^0.167.1"
+  }
+}
