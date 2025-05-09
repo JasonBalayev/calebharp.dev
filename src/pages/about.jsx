@@ -1,5 +1,5 @@
 import * as React from "react";
-import Layout from "./layout";
+import Layout from "../components/Layout";
 import { motion } from "framer-motion";
 import TypewriterText from "../components/TypewriterText";
 import AnimatedStars from "../components/AnimatedStars";
@@ -71,23 +71,32 @@ const SkillCard = ({ name, image }) => {
       animate="visible"
       variants={childVariants}
       className="group relative"
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.15 }}
     >
-      <div className="relative p-4 bg-black bg-opacity-40 rounded-xl border border-white border-opacity-10 group-hover:border-red-500 transition-all duration-200 h-[120px] sm:h-[130px] flex items-center justify-center">
-        <div className="flex flex-col items-center justify-between h-full">
-          <div className={`flex items-center justify-center ${getImageSizeClass(name)}`}>
-            <img 
-              src={image} 
-              alt={name} 
-              className={getImageClass(name)}
-            />
-          </div>
-          <p className="text-xs sm:text-sm font-medium text-gray-200 group-hover:text-red-400 transition-colors duration-200 text-center mt-2">
-            {name}
-          </p>
+      <motion.div
+        className="flex flex-col items-center justify-center p-4 bg-black/30 backdrop-blur-sm rounded-xl border border-white/10 hover:border-blue-500/50 transition-all duration-300"
+        whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.1)" }}
+      >
+        <div className={getImageSizeClass(name)}>
+          <img 
+            src={image} 
+            alt={name}
+            className={getImageClass(name)}
+          />
         </div>
-      </div>
+        <p className="mt-3 text-sm text-center text-gray-300 group-hover:text-blue-400 transition-colors duration-300">{name}</p>
+        
+        <motion.div 
+          className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          initial={false}
+          whileHover={{
+            background: [
+              "radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 70%)",
+              "radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 70%)"
+            ]
+          }}
+          transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
+        />
+      </motion.div>
     </motion.div>
   );
 };
@@ -97,18 +106,18 @@ const CourseworkCard = ({ title, items }) => {
 
   return (
     <motion.div
-      className="p-6 bg-black bg-opacity-40 rounded-xl border border-white border-opacity-10 hover:border-red-500 transition-all duration-300 cursor-pointer"
+      className="p-6 bg-black bg-opacity-40 rounded-xl border border-white border-opacity-10 hover:border-blue-500 transition-all duration-300 cursor-pointer"
       whileHover={{ scale: 1.02 }}
       onClick={() => setIsExpanded(!isExpanded)}
     >
       <div className="flex justify-between items-center mb-4">
-        <h3 className="text-xl font-semibold text-red-400">
+        <h3 className="text-xl font-semibold text-blue-400">
           {title}
         </h3>
         <motion.div
           animate={{ rotate: isExpanded ? 180 : 0 }}
           transition={{ duration: 0.3 }}
-          className="text-red-400"
+          className="text-blue-400"
         >
           ▼
         </motion.div>
@@ -129,7 +138,7 @@ const CourseworkCard = ({ title, items }) => {
             transition={{ delay: index * 0.1 }}
             className="text-gray-300 flex items-center space-x-2"
           >
-            <span className="text-red-500">•</span>
+            <span className="text-blue-500">•</span>
             <span>{item}</span>
           </motion.li>
         ))}
@@ -146,7 +155,7 @@ const CourseworkSection = () => (
     transition={{ duration: 0.6 }}
   >
     <h2 className="text-3xl font-bold text-center mb-12 font-spaceGrotesk">
-      <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-500 to-red-600 [text-shadow:_0_0_30px_rgb(239_68_68_/_0.3)] animate-pulse">
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-600 [text-shadow:_0_0_30px_rgb(59_130_246_/_0.3)] animate-pulse">
         Academic Background
       </span>
     </h2>
@@ -160,13 +169,13 @@ const CourseworkSection = () => (
 
 const HighlightedText = ({ children }) => (
   <motion.span
-    className="text-red-400 font-semibold relative inline-block"
+    className="text-blue-400 font-semibold relative inline-block"
     whileHover={{ scale: 1.05 }}
     transition={{ duration: 0.2 }}
   >
     {children}
     <motion.div
-      className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-red-500 to-transparent"
+      className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent"
       initial={{ scaleX: 0 }}
       animate={{ scaleX: 1 }}
       transition={{ duration: 0.6, delay: 0.2 }}
@@ -176,8 +185,7 @@ const HighlightedText = ({ children }) => (
 
 const About = () => {
   return (
-    <div className="bg-[#0a0a0a] min-h-screen relative overflow-hidden">
-      <AnimatedStars />
+    <div className="min-h-screen relative overflow-hidden">
       <Layout>
         <div className="relative z-10 text-white pb-20">
           <motion.h1 
@@ -186,7 +194,7 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-500 to-pink-500 [text-shadow:_0_0_30px_rgb(239_68_68_/_0.3)] animate-pulse">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-500 [text-shadow:_0_0_30px_rgb(59_130_246_/_0.3)] animate-pulse">
               <TypewriterText 
                 text="About Me" 
                 delay={0} 
@@ -202,7 +210,7 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <motion.div
-              className="p-6 bg-black/30 rounded-xl border border-red-500/20 backdrop-blur-sm"
+              className="p-6 bg-black/30 rounded-xl border border-blue-500/20 backdrop-blur-sm"
               whileHover={{ scale: 1.01 }}
               transition={{ duration: 0.2 }}
             >
@@ -212,33 +220,31 @@ const About = () => {
                 transition={{ duration: 0.6 }}
                 className="leading-relaxed"
               >
-                I'm a <HighlightedText>Computer Science student</HighlightedText>{" "}at{" "}
+                I'm a <HighlightedText>Computer Science and Economics student</HighlightedText>{" "}at{" "}
                 <HighlightedText>Northeastern University</HighlightedText>, class of 2027. 
                 My passion lies in developing meaningful projects. My interests lie in{" "}
-                <HighlightedText>full-stack development</HighlightedText>{" "}within the{" "}
-                <HighlightedText>Web3</HighlightedText>{" "}and{" "}
-                <HighlightedText>Web2</HighlightedText>{" "}spaces,{" "}
+                <HighlightedText>full-stack development</HighlightedText>,{" "}
+                <HighlightedText>financial technology</HighlightedText>,{" "}
                 <HighlightedText>system design</HighlightedText>{" "}(architectures), and{" "}
                 <HighlightedText>AI</HighlightedText>.
               </motion.p>
 
               <motion.div 
-                className="mt-6 p-4 bg-gradient-to-r from-red-500/5 to-rose-500/5 rounded-lg border-l-2 border-red-500"
+                className="mt-6 p-4 bg-gradient-to-r from-blue-500/5 to-indigo-500/5 rounded-lg border-l-2 border-blue-500"
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <p className="text-gray-300">
-                  Currently seeking{" "}<HighlightedText>internship opportunities</HighlightedText>{" "}in{" "}
-                  software development, I'm particularly interested in:
+                  Currently an{" "}<HighlightedText>incoming SWE Intern at Sixth Street</HighlightedText>, I'm particularly interested in:
                 </p>
                 <ul className="mt-3 space-y-2">
                   {[
                     "Full-stack Development",
+                    "Financial Technology",
                     "Artificial Intelligence",
                     "System Design",
-                    "Web Design",
-                    "Quality Assurance"
+                    "Data Analysis"
                   ].map((item, index) => (
                     <motion.li
                       key={item}
@@ -256,11 +262,11 @@ const About = () => {
                           repeat: Infinity,
                           delay: index * 0.2
                         }}
-                        className="text-red-400"
+                        className="text-blue-400"
                       >
                         ▹
                       </motion.span>
-                      <span className="text-gray-300 hover:text-red-400 transition-colors duration-300">
+                      <span className="text-gray-300 hover:text-blue-400 transition-colors duration-300">
                         {item}
                       </span>
                     </motion.li>
@@ -270,12 +276,12 @@ const About = () => {
             </motion.div>
 
             <motion.div
-              className="relative mt-8 p-6 bg-gradient-to-r from-red-500/10 to-rose-500/10 rounded-xl border border-red-500/20"
+              className="relative mt-8 p-6 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 rounded-xl border border-blue-500/20"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
               <div className="absolute -top-3 left-4 bg-[#0a0a0a] px-4 py-1">
-                <span className="text-red-400 font-semibold">Fun Fact</span>
+                <span className="text-blue-400 font-semibold">Fun Fact</span>
               </div>
               
               <div className="flex items-center gap-4">
@@ -289,7 +295,7 @@ const About = () => {
                     repeat: Infinity,
                     ease: "linear"
                   }}
-                  className="text-red-400 text-3xl"
+                  className="text-blue-400 text-3xl"
                 >
                   <FaSkating />
                 </motion.div>
@@ -300,10 +306,9 @@ const About = () => {
                   transition={{ duration: 0.6 }}
                   className="text-gray-300"
                 >
-                  When I'm not coding, you'll find me skateboarding at the best skatepark I can find. 
-                  I've been skating for a few years with a few tricks mastered, but I mainly skate bowls. 
-                  In the near future, I will have collected a deck (wooden board of the skateboard) 
-                  from every state with some boards currently found from California, Connecticut, and Massachusets. 
+                  When I'm not coding, you'll find me playing basketball at the nearest court. 
+                  I've been playing since I was a kid and love both watching and playing the game.
+                  I'm also an avid chess player and enjoy solving complex puzzles in my free time.
                   <motion.span
                     className="inline-block ml-2"
                     animate={{
@@ -315,13 +320,13 @@ const About = () => {
                       ease: "easeInOut"
                     }}
                   >
-                    🛹
+                    🏀
                   </motion.span>
                 </motion.p>
               </div>
 
               <motion.div
-                className="absolute -bottom-1 -right-1 text-red-500/20 text-6xl"
+                className="absolute -bottom-1 -right-1 text-blue-500/20 text-6xl"
                 animate={{
                   rotate: [0, 360],
                   scale: [1, 1.1, 1]
@@ -332,7 +337,7 @@ const About = () => {
                   ease: "linear"
                 }}
               >
-                🛹
+                🏀
               </motion.div>
             </motion.div>
           </motion.div>
@@ -346,4 +351,6 @@ const About = () => {
   );
 };
 
-export default About; 
+export default About;
+
+export const Head = () => <title>About | Caleb Bennett-Harper</title>; 

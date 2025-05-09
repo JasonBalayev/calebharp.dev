@@ -87,7 +87,7 @@ const CustomCursor = () => {
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999]">
       <motion.div
-        className="fixed rounded-full bg-red-600/60 backdrop-blur-sm"
+        className="fixed rounded-full bg-blue-600/60 backdrop-blur-sm"
         style={{
           x: cursorX,
           y: cursorY,
@@ -108,7 +108,7 @@ const CustomCursor = () => {
       />
       
       <motion.div
-        className="fixed rounded-full bg-red-500"
+        className="fixed rounded-full bg-blue-500"
         style={{
           x: cursorX,
           y: cursorY,
@@ -130,7 +130,7 @@ const CustomCursor = () => {
       
       {isClicking && (
         <motion.div
-          className="fixed text-red-400 font-mono pointer-events-none select-none"
+          className="fixed text-blue-400 font-mono pointer-events-none select-none"
           style={{
             x: cursorX,
             y: cursorY,
@@ -141,7 +141,7 @@ const CustomCursor = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.5 }}
         >
-          ₿
+          $
         </motion.div>
       )}
     </div>

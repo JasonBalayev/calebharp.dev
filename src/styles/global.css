@@ -12,6 +12,7 @@ body {
   color: #ffffff;
   font-family: 'Space Grotesk', sans-serif;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {

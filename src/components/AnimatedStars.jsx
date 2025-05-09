@@ -121,7 +121,7 @@ const AnimatedStars = ({ cryptoMode = false }) => {
         if (particle.type === 'binary') {
           ctx.save();
           ctx.font = `${particle.size}px "Courier New", monospace`;
-          ctx.fillStyle = `rgba(255, 30, 30, ${particle.opacity})`;
+          ctx.fillStyle = `rgba(30, 144, 255, ${particle.opacity})`;
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
           ctx.fillText(particle.symbol, particle.x, particle.y);
@@ -129,7 +129,7 @@ const AnimatedStars = ({ cryptoMode = false }) => {
         } else if (particle.type === 'crypto') {
           ctx.save();
           ctx.font = `bold ${particle.size}px "Courier New", monospace`;
-          ctx.fillStyle = `rgba(255, 50, 50, ${particle.opacity})`;
+          ctx.fillStyle = `rgba(50, 130, 255, ${particle.opacity})`;
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
           ctx.fillText(particle.symbol, particle.x, particle.y); 
@@ -142,9 +142,8 @@ const AnimatedStars = ({ cryptoMode = false }) => {
             particle.x, particle.y, 0,
             particle.x, particle.y, particle.size * 2
           );
-          gradient.addColorStop(0, `rgba(255, 50, 50, 0)`);
-          gradient.addColorStop(0.5, `rgba(255, 50, 50, ${particle.opacity * 0.1})`);
-          gradient.addColorStop(1, `rgba(255, 50, 50, 0)`);
+          gradient.addColorStop(0, `rgba(50, 130, 255, ${particle.opacity})`);
+          gradient.addColorStop(1, 'transparent');
           ctx.fillStyle = gradient;
           ctx.arc(particle.x, particle.y, particle.size * 2, 0, Math.PI * 2);
           ctx.fill();
@@ -165,7 +164,7 @@ const AnimatedStars = ({ cryptoMode = false }) => {
             const opacity = Math.max(0.05, 0.4 * (1 - distance / maxDistance));
             
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(255, 50, 50, ${opacity})`;
+            ctx.strokeStyle = `rgba(30, 144, 255, ${opacity})`;
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.stroke();

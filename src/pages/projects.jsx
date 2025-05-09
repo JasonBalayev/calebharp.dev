@@ -1,5 +1,5 @@
 import * as React from "react";
-import Layout from "./layout";
+import Layout from "../components/Layout";
 import ProjectCards from "../components/ProjectCards";
 import { projects } from "../components/projects";
 import { motion } from "framer-motion";
@@ -7,7 +7,7 @@ import TypewriterText from "../components/TypewriterText";
 
 const Projects = () => {
   return (
-    <div className="bg-[#0a0a0a] min-h-screen relative overflow-y-auto pb-32">
+    <div className="min-h-screen relative overflow-y-auto pb-32">
       <Layout>
         <motion.div
           initial={{ opacity: 0 }}
@@ -21,7 +21,7 @@ const Projects = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-500 to-red-600 [text-shadow:_0_0_30px_rgb(239_68_68_/_0.3)] animate-pulse">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-600 [text-shadow:_0_0_30px_rgb(59_130_246_/_0.3)] animate-pulse">
               <TypewriterText 
                 text="My Projects" 
                 delay={0} 
@@ -37,3 +37,5 @@ const Projects = () => {
 };
 
 export default Projects;
+
+export const Head = () => <title>Projects | Caleb Bennett-Harper</title>;

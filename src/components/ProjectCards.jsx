@@ -21,27 +21,44 @@ const ProjectCard = ({ project }) => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="project-card relative p-6 bg-black bg-opacity-40 rounded-xl border border-white border-opacity-10 hover:border-red-500 transition-all duration-300 h-full flex flex-col overflow-hidden"
-      whileHover={!isMobile ? { y: -5, scale: 1.02 } : {}}
+      className="project-card relative p-6 bg-[#0a1020]/80 backdrop-blur-sm rounded-xl border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 h-full flex flex-col overflow-hidden"
+      whileHover={!isMobile ? { y: -5, boxShadow: "0 20px 25px -5px rgba(59, 130, 246, 0.15)" } : {}}
       onHoverStart={() => !isMobile && setIsHovered(true)}
       onHoverEnd={() => !isMobile && setIsHovered(false)}
     >
+      {/* Blue glow effect at the top */}
+      <div className="absolute -top-10 -left-10 w-full h-40 overflow-hidden">
+        <motion.div
+          className="w-40 h-40 rounded-full bg-blue-500/20 blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      </div>
+
+      {/* GitHub link indicator */}
       {project.link && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: isMobile ? 1 : (isHovered ? 1 : 0) }}
           transition={{ duration: 0.2 }}
-          className="absolute top-0 right-8 m-2 sm:m-3"
+          className="absolute top-0 right-8 m-2 sm:m-3 z-10"
         >
           <motion.div 
-            className="flex items-center gap-1 sm:gap-2 backdrop-blur-sm rounded-full bg-red-900/20 border border-red-700/30"
+            className="flex items-center gap-1 sm:gap-2 backdrop-blur-sm rounded-full bg-blue-800/40 border border-blue-500/40"
           >
             <motion.div
               className="flex items-center justify-center p-1.5 sm:p-2"
               whileHover={{ scale: 1.05 }}
             >
               <svg 
-                className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-400/70" 
+                className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-300" 
                 fill="currentColor" 
                 viewBox="0 0 24 24"
               >
@@ -58,7 +75,7 @@ const ProjectCard = ({ project }) => {
               transition={{ duration: 0.2 }}
               className="overflow-hidden whitespace-nowrap"
             >
-              <span className="block px-2 text-xs sm:text-sm text-red-300/70 font-medium">
+              <span className="block px-2 text-xs sm:text-sm text-blue-200 font-medium">
                 Click Title For GitHub
               </span>
             </motion.div>
@@ -66,64 +83,48 @@ const ProjectCard = ({ project }) => {
         </motion.div>
       )}
 
-      <div className="absolute top-0 left-0 w-full h-16 overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="absolute inset-0 bg-gradient-to-r from-red-800/10 via-red-500/10 to-rose-500/10"
-        />
-        <motion.div 
-          className="absolute -top-8 -right-8 w-24 h-24 bg-gradient-to-r from-red-500/20 to-transparent rounded-full blur-xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.2, 0.3],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-500/30 to-transparent" />
-        <motion.div
-          className="absolute top-2 left-3"
-          animate={{
-            rotate: [0, 360],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        >
-          <div className="w-1.5 h-1.5 bg-red-500/40 rounded-full" />
-        </motion.div>
-        <motion.div
-          className="absolute top-4 right-6"
-          animate={{
-            rotate: [360, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        >
-          <div className="w-2 h-2 bg-rose-500/30 rounded-full" />
-        </motion.div>
-      </div>
+      {/* Top border glow */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-400/50 to-transparent" />
+      
+      {/* Floating particles */}
+      <motion.div
+        className="absolute top-2 left-3 z-0"
+        animate={{
+          rotate: [0, 360],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      >
+        <div className="w-1.5 h-1.5 bg-blue-400/60 rounded-full" />
+      </motion.div>
+      <motion.div
+        className="absolute top-4 right-6 z-0"
+        animate={{
+          rotate: [360, 0],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      >
+        <div className="w-2 h-2 bg-blue-300/50 rounded-full" />
+      </motion.div>
 
-      <div className="mt-12 sm:mt-14">
+      {/* Project title */}
+      <div className="mt-6 mb-2 relative z-10">
         {project.link ? (
-          <a href={project.link} className="no-underline group">
+          <a href={project.link} className="no-underline group" target="_blank" rel="noopener noreferrer">
             <motion.h1 
-              className="text-xl sm:text-2xl font-bold text-gray-200 mb-6 relative inline-block"
+              className="text-xl sm:text-2xl font-bold text-blue-100 mb-4 relative inline-block"
               whileHover={{ scale: 1.01 }}
             >
               {project.name}
               <motion.div
-                className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-red-500 to-transparent"
+                className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-blue-500/0 via-blue-400 to-blue-500/0"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: isHovered ? 1 : 0 }}
                 transition={{ duration: 0.3 }}
@@ -132,7 +133,7 @@ const ProjectCard = ({ project }) => {
           </a>
         ) : (
           <motion.h1 
-            className="text-xl sm:text-2xl font-bold text-gray-200 mb-6"
+            className="text-xl sm:text-2xl font-bold text-blue-100 mb-4"
             whileHover={{ scale: 1.01 }}
           >
             {project.name}
@@ -140,11 +141,13 @@ const ProjectCard = ({ project }) => {
         )}
       </div>
  
-      <p className="text-base text-gray-400 flex-grow">
+      {/* Project description */}
+      <p className="text-base text-blue-200/80 flex-grow relative z-10">
         {project.description}
       </p>
  
-      <div className="mt-6">
+      {/* Project links and badges */}
+      <div className="mt-6 relative z-10">
         {project.liveLink && (
           <div className="flex justify-center mb-4">
             <motion.a
@@ -153,7 +156,7 @@ const ProjectCard = ({ project }) => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
             >
-              <button className="px-4 py-2 text-base font-semibold text-white bg-red-600 rounded-lg shadow-lg hover:bg-red-500 transition-all duration-300 flex items-center gap-2">
+              <button className="px-4 py-2 text-base font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-lg shadow-lg shadow-blue-500/20 transition-all duration-300 flex items-center gap-2">
                 <span>View Live Demo</span>
                 <motion.span
                   animate={{
@@ -176,7 +179,7 @@ const ProjectCard = ({ project }) => {
           {project.badges.map((badge) => (
             <motion.div 
               key={badge}
-              className="px-3 py-1 text-sm text-gray-200 bg-black bg-opacity-40 rounded-full border border-white border-opacity-10 hover:border-red-500 transition-all duration-300"
+              className="px-3 py-1 text-sm text-blue-100 bg-blue-900/40 backdrop-blur-sm rounded-full border border-blue-500/30 hover:border-blue-400/70 transition-all duration-300"
               whileHover={{ scale: 1.05 }}
             >
               {badge}
@@ -189,13 +192,33 @@ const ProjectCard = ({ project }) => {
               aria-label={`Link to ${project.hackathon.name}`}
               className="no-underline"
               whileHover={{ scale: 1.05 }}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <div className="px-3 py-1 text-sm text-gray-200 bg-black bg-opacity-40 rounded-full border border-red-500 hover:bg-red-500/20 transition-all duration-300">
+              <div className="px-3 py-1 text-sm text-blue-100 bg-blue-800/50 backdrop-blur-sm rounded-full border border-blue-400/50 hover:bg-blue-700/50 transition-all duration-300">
                 {project.hackathon.name}
               </div>
             </motion.a>
           )}
         </div>
+      </div>
+
+      {/* Bottom glow */}
+      <div className="absolute bottom-0 right-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
+      <div className="absolute -bottom-10 -right-10 w-40 h-40">
+        <motion.div
+          className="w-40 h-40 rounded-full bg-blue-600/10 blur-3xl"
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.2, 0.3, 0.2],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
       </div>
     </motion.div>
   );

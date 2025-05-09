@@ -1,14 +1,12 @@
 import * as React from "react";
-import Layout from "./layout";
+import Layout from "../components/Layout";
 import { motion } from "framer-motion";
 import TypewriterText from "../components/TypewriterText";
-import AnimatedStars from "../components/AnimatedStars";
 import { FaXTwitter } from "react-icons/fa6";
 
 const Contact = () => {
   return (
-    <div className="bg-[#0a0a0a] min-h-screen relative overflow-hidden">
-      <AnimatedStars />
+    <div className="min-h-screen relative overflow-hidden">
       <Layout>
         <div className="relative min-h-screen flex flex-col items-center justify-center px-4 text-white z-10">
           <motion.div
@@ -18,7 +16,7 @@ const Contact = () => {
             className="text-center"
           >
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-8 font-spaceGrotesk tracking-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-500 to-red-600 [text-shadow:_0_0_30px_rgb(239_68_68_/_0.3)] animate-pulse">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-600 [text-shadow:_0_0_30px_rgb(59_130_246_/_0.3)] animate-pulse">
                 <TypewriterText 
                   text="Let's Connect"
                   delay={0}
@@ -42,12 +40,12 @@ const Contact = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center w-full">
               <motion.a
                 whileHover={{ scale: 1.05 }}
-                href="https://linkedin.com/in/jasonbalayev/"
+                href="https://linkedin.com/in/CalebBennettHarper/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto"
               >
-                <div className="bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 text-white text-md h-14 px-10 flex justify-center items-center rounded-full shadow-lg transition-all duration-300 gap-2">
+                <div className="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white text-md h-14 px-10 flex justify-center items-center rounded-full shadow-lg transition-all duration-300 gap-2">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                   </svg>
@@ -57,7 +55,7 @@ const Contact = () => {
 
               <motion.a
                 whileHover={{ scale: 1.05 }}
-                href="https://github.com/JasonBalayev"
+                href="https://github.com/CalebBennett"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto"
@@ -89,34 +87,34 @@ const Contact = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1 }}
-            className="mt-12 text-center bg-black/20 p-6 rounded-xl border border-red-500/20 backdrop-blur-sm"
+            className="mt-12 text-center bg-black/20 p-6 rounded-xl border border-blue-500/20 backdrop-blur-sm"
           >
             <p className="text-lg sm:text-xl mb-4 font-spaceGrotesk">
-              <span className="font-bold text-red-400">School Email:</span>{" "}
+              <span className="font-bold text-blue-400">School Email:</span>{" "}
               <span className="text-gray-300">
-                balayev.j{' '}
-                <span className="text-red-400">[at]</span>
+                bennett-ha.c{' '}
+                <span className="text-blue-400">[at]</span>
                 {' '}northeastern{' '}
-                <span className="text-red-400">[dot]</span>
+                <span className="text-blue-400">[dot]</span>
                 {' '}edu
               </span>
             </p>
             <p className="text-lg sm:text-xl">
-              <span className="font-bold text-red-400">Personal Email:</span>{" "}
+              <span className="font-bold text-blue-400">Personal Email:</span>{" "}
               <span className="text-gray-300">
-                jasonbalayev{' '}
-                <span className="text-red-400">[at]</span>
+                caleb.bennett.harper{' '}
+                <span className="text-blue-400">[at]</span>
                 {' '}gmail{' '}
-                <span className="text-red-400">[dot]</span>
+                <span className="text-blue-400">[dot]</span>
                 {' '}com
               </span>
             </p>
             <motion.a
               whileHover={{ scale: 1.05 }}
-              href="mailto:balayev.j@northeastern.edu"
+              href="mailto:bennett-ha.c@northeastern.edu"
               className="mt-6 inline-block"
             >
-              <div className="bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 text-white text-md h-12 px-8 flex justify-center items-center rounded-full shadow-lg transition-all duration-300 gap-2">
+              <div className="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white text-md h-12 px-8 flex justify-center items-center rounded-full shadow-lg transition-all duration-300 gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
@@ -131,3 +129,5 @@ const Contact = () => {
 };
 
 export default Contact;
+
+export const Head = () => <title>Contact | Caleb Bennett-Harper</title>;

@@ -1,10 +1,10 @@
 import * as React from "react";
-import Layout from "./layout";
+import Layout from "../components/Layout";
 import { Button } from "@nextui-org/button";
 import TypewriterText from "../components/TypewriterText";
 import { Link } from "gatsby";
 import { motion } from "framer-motion";
-import profileImage from "../images/professional/JasonFinal.png";
+import profileImage from "../images/professional/calebProfile.jpeg";
 import { FaArrowDown, FaGithub, FaLinkedin, FaCode, FaLaptopCode, FaServer, FaTerminal } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import AnimatedStars from "../components/AnimatedStars";
@@ -34,10 +34,8 @@ const childVariants = {
 
 const IndexPage = () => {
   return (
-    <Layout showCryptoBackground={true}>
+    <Layout>
       <div className="relative min-h-screen w-full overflow-y-auto pb-20">
-        <AnimatedStars cryptoMode={true} />
-       
         <motion.main
           className="flex flex-col items-center justify-center min-h-screen w-full relative z-10 px-4 max-w-7xl mx-auto pt-12 sm:pt-16"
           variants={containerVariants}
@@ -51,19 +49,19 @@ const IndexPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-red-600 via-red-500 to-rose-500 animate-spin-slow" />              
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 via-red-500 to-rose-500 opacity-30 blur-md animate-pulse-slow" />              
+              <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-500 animate-spin-slow" />              
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-500 opacity-30 blur-md animate-pulse-slow" />              
               <img
                 src={profileImage}
-                alt="Jason Balayev"
+                alt="Caleb Bennett-Harper"
                 className="relative w-full h-full rounded-full shadow-xl p-[3px]"
               />
             </motion.div>
 
             <div className="relative w-full text-center">
               <h1 className="relative text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-spaceGrotesk tracking-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-500 to-red-600 [text-shadow:_0_0_30px_rgb(239_68_68_/_0.3)] animate-pulse">
-                  <TypewriterText text="Jason Balayev" delay={0} speed={100} />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-600 [text-shadow:_0_0_30px_rgb(59_130_246_/_0.3)] animate-pulse">
+                  <TypewriterText text="Caleb Bennett-Harper" delay={0} speed={100} />
                 </span>
               </h1>
             </div>
@@ -73,10 +71,10 @@ const IndexPage = () => {
                 animate={{ opacity: [0, 1] }}
                 transition={{ duration: 0.5, delay: 1.5 }}
               >
-                <FaTerminal className="text-red-400" />
+                <FaTerminal className="text-blue-400" />
               </motion.div>
               <TypewriterText
-                text="Computer Science Student @ Northeastern University '27"
+                text="Computer Science + Economics @ Northeastern University '27"
                 delay={1500}
                 speed={50}
               />
@@ -89,7 +87,7 @@ const IndexPage = () => {
               transition={{ duration: 0.6, delay: 4 }}
             >
               <TypewriterText
-                text="Building the future of decentralized technology."
+                text="Incoming SWE Intern @ Sixth Street | Building innovative solutions."
                 delay={4000}
                 speed={30}
               />
@@ -100,51 +98,51 @@ const IndexPage = () => {
                 icon={<FaCode />}
                 title="Software Development & Quality Assurance"
                 description="Building robust applications with quality standards."
-                color="red"
+                color="blue"
               />
               <FeatureBox
                 icon={<FaLaptopCode />}
                 title="Full Stack"
-                description="End-to-end solutions for both Web2 and Web3 technologies."
-                color="red"
+                description="End-to-end solutions with modern web technologies."
+                color="blue"
               />
               <FeatureBox
                 icon={<FaServer />}
                 title="System Design"
                 description="Creating scalable architectures optimizing performance."
-                color="red"
+                color="blue"
               />            
             </div>
 
             <div className="flex space-x-6 mt-8">
               <a
-                href="https://github.com/JasonBalayev"
+                href="https://github.com/CalebBennett"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-red-400 hover:text-white transition-colors duration-300"
+                className="text-blue-400 hover:text-white transition-colors duration-300"
               >
                 <FaGithub className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
               </a>
               <a
-                href="https://linkedin.com/in/JasonBalayev"
+                href="https://linkedin.com/in/CalebBennettHarper"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-red-400 hover:text-white transition-colors duration-300"
+                className="text-blue-400 hover:text-white transition-colors duration-300"
               >
                 <FaLinkedin className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
               </a>
               <a
-                href="https://x.com/Jason_Balayev"
+                href="https://x.com/Caleb_BH"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-red-400 hover:text-white transition-colors duration-300"
+                className="text-blue-400 hover:text-white transition-colors duration-300"
               >
                 <FaXTwitter className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
               </a>
             </div>
 
             <motion.div className="mt-8 animate-bounce" variants={childVariants}>
-              <FaArrowDown className="text-red-500 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
+              <FaArrowDown className="text-blue-500 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
             </motion.div> 
 
             <motion.div className="mt-4 flex flex-wrap gap-4 justify-center" variants={childVariants}>
@@ -153,7 +151,7 @@ const IndexPage = () => {
                   size="lg"
                   variant="ghost"
                   radius="full"
-                  className="text-white border-2 border-red-500 hover:bg-red-500 hover:border-red-500 hover:text-white transition-all duration-300 text-base sm:text-lg md:text-xl px-6 py-2 sm:px-8 sm:py-3"
+                  className="text-white border-2 border-blue-500 hover:bg-blue-500 hover:border-blue-500 hover:text-white transition-all duration-300 text-base sm:text-lg md:text-xl px-6 py-2 sm:px-8 sm:py-3"
                 >
                   View My Projects
                 </Button>
@@ -163,7 +161,7 @@ const IndexPage = () => {
                   size="lg"
                   variant="ghost"
                   radius="full"
-                  className="text-white border-2 border-red-500 hover:bg-red-500 hover:border-red-500 hover:text-white transition-all duration-300 text-base sm:text-lg md:text-xl px-6 py-2 sm:px-8 sm:py-3"
+                  className="text-white border-2 border-blue-500 hover:bg-blue-500 hover:border-blue-500 hover:text-white transition-all duration-300 text-base sm:text-lg md:text-xl px-6 py-2 sm:px-8 sm:py-3"
                 >
                   My Achievements
                 </Button>
@@ -173,7 +171,7 @@ const IndexPage = () => {
                   size="lg"
                   variant="ghost"
                   radius="full"
-                  className="text-white border-2 border-red-500 hover:bg-red-500 hover:border-red-500 hover:text-white transition-all duration-300 text-base sm:text-lg md:text-xl px-6 py-2 sm:px-8 sm:py-3"
+                  className="text-white border-2 border-blue-500 hover:bg-blue-500 hover:border-blue-500 hover:text-white transition-all duration-300 text-base sm:text-lg md:text-xl px-6 py-2 sm:px-8 sm:py-3"
                 >
                   About Me
                 </Button>
@@ -187,8 +185,8 @@ const IndexPage = () => {
 };
 
 const FeatureBox = ({ icon, title, description, color = "indigo" }) => {
-  const borderColor = color === "red" ? "hover:border-red-500" : "hover:border-indigo-500";
-  const iconColor = color === "red" ? "text-red-400" : "text-indigo-400";
+  const borderColor = color === "blue" ? "hover:border-blue-500" : "hover:border-indigo-500";
+  const iconColor = color === "blue" ? "text-blue-400" : "text-indigo-400";
   
   return (
     <motion.div
@@ -200,9 +198,9 @@ const FeatureBox = ({ icon, title, description, color = "indigo" }) => {
       <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{title}</h3>
       <p className="text-sm sm:text-base text-gray-400">{description}</p>
 
-      {color === "red" && (
-        <div className="absolute -bottom-1 -right-1 text-red-500 opacity-10 text-4xl rotate-12">
-          ₿
+      {color === "blue" && (
+        <div className="absolute -bottom-1 -right-1 text-blue-500 opacity-10 text-4xl rotate-12">
+          $
         </div>
       )}
     </motion.div>
@@ -211,4 +209,4 @@ const FeatureBox = ({ icon, title, description, color = "indigo" }) => {
 
 export default IndexPage;
 
-export const Head = () => <title>Jason Balayev - Portfolio</title>;
+export const Head = () => <title>Caleb Bennett-Harper - Portfolio</title>;
