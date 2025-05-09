@@ -26,9 +26,7 @@ const Contact = () => {
             </h1>
           </motion.div>
 
-          {/* New card-based layout */}
           <div className="w-full max-w-6xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Left column - Contact cards */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -120,7 +118,6 @@ const Contact = () => {
               </motion.div>
             </motion.div>
             
-            {/* Right column - Social media and calendar */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}

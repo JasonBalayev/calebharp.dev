@@ -165,8 +165,6 @@ const ExperienceCard = ({ company, position, type, duration, location, skills, o
             ))}
           </motion.div>
         )}
-        
-        {/* Futuristic accent line at bottom */}
         <div className="absolute bottom-0 right-0 w-1/3 h-1 bg-gradient-to-l from-blue-600 to-transparent"></div>
       </div>
     </motion.div>

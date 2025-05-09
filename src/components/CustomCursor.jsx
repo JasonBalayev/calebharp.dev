@@ -9,7 +9,6 @@ const CustomCursor = () => {
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
-    // Check if device is mobile
     const checkMobile = () => {
       setIsMobile(
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
@@ -17,11 +16,7 @@ const CustomCursor = () => {
       );
     };
     checkMobile();
-
-    // Add resize listener
     window.addEventListener('resize', checkMobile);
-
-    // Only add mouse events if not mobile
     if (!isMobile) {
       const updateMousePosition = (e) => {
         cursorX.set(e.clientX);
@@ -55,7 +50,6 @@ const CustomCursor = () => {
         }
       };
 
-      // Hide the default cursor
       document.body.style.cursor = "none";
       window.addEventListener("mousemove", updateMousePosition, { passive: true });
       window.addEventListener("mousedown", handleMouseDown);
@@ -72,7 +66,6 @@ const CustomCursor = () => {
         document.body.style.cursor = "auto";
       };
     } else {
-      // Reset cursor style on mobile
       document.body.style.cursor = "auto";
     }
 
@@ -81,7 +74,6 @@ const CustomCursor = () => {
     };
   }, [isMobile]); 
 
-  // Don't render anything on mobile
   if (isMobile) return null;
 
   return (

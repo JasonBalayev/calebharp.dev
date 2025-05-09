@@ -10,11 +10,8 @@ const ProjectCard = ({ project }) => {
       transition={{ duration: 0.5 }}
       className="bg-black/60 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-blue-900/40 hover:border-blue-700/40 transition-all duration-300 h-full flex flex-col"
     >
-      {/* Project header with gradient */}
       <div className="h-2 bg-gradient-to-r from-blue-700 via-blue-500 to-indigo-600"></div>
-      
       <div className="p-6 flex flex-col h-full">
-        {/* Project title */}
         <div className="flex justify-between items-start mb-4">
           <h3 className="text-xl font-bold text-blue-100">
             {project.name}
@@ -49,12 +46,10 @@ const ProjectCard = ({ project }) => {
           </div>
         </div>
         
-        {/* Project description */}
         <p className="text-blue-200/80 mb-6 flex-grow">
           {project.description}
         </p>
         
-        {/* Tech stack */}
         <div className="mt-auto">
           <div className="flex flex-wrap gap-2">
             {project.badges.map((badge) => (
