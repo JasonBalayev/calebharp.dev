@@ -156,14 +156,14 @@ const IndexPage = () => {
                   View My Projects
                 </Button>
               </Link>
-              <Link to="/achievements">
+              <Link to="/experiences">
                 <Button
                   size="lg"
                   variant="ghost"
                   radius="full"
                   className="text-white border-2 border-blue-500 hover:bg-blue-500 hover:border-blue-500 hover:text-white transition-all duration-300 text-base sm:text-lg md:text-xl px-6 py-2 sm:px-8 sm:py-3"
                 >
-                  My Achievements
+                  My Experiences
                 </Button>
               </Link>
               <Link to="/about">
